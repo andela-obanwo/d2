@@ -7,9 +7,7 @@ class App(Frame):
         self.result = StringVar()
         self.expression = StringVar()
         self.grid()
-        # self.pack(side=LEFT)
-        print "Result: " + str(self.result.get())
-        print "Expression: " + str(self.expression.get())
+
         self.create_layout()
         self.create_display()
         self.create_buttons()
@@ -17,8 +15,7 @@ class App(Frame):
     def create_layout(self):
         self.displayexpressionrow = Frame(self, relief=GROOVE, bg='grey')
         self.displayexpressionrow.grid()
-        # self.displayresultrow = Frame(self, relief=GROOVE, bg='grey')
-        # self.displayresultrow.grid()
+
         self.buttonsrow = Frame(self)
         self.buttonsrow.grid()
         self.button_column1 = Frame(self.buttonsrow)
@@ -50,8 +47,6 @@ class App(Frame):
     def create_display(self):
         self.display_calculation = Label(self.displayexpressionrow, text='Calculation: ', textvariable=self.expression)
         self.display_calculation.grid()
-        # self.display_result = Label(self.displayresultrow, text='Result: ', textvariable=self.result)
-        # self.display_result.grid()
 
     def create_buttons(self):
         self.create_numbers()
@@ -109,9 +104,6 @@ class App(Frame):
     def update_display(self, input):
         expression = self.expression.get()
 
-        # if not expression:
-        #     expression += str(input)
-        # else:
         expression += str(input) if not self.do_not_update(expression, input) else ''
         self.expression.set(expression)
 
@@ -120,11 +112,9 @@ class App(Frame):
         if not result:
             result = ((str(input) in '0-+/*' and expression[-1] in '/+*-') or expression == 'Error')
 
-
         return result
 
     def clear_display(self):
-        # self.result.set('')
         self.expression.set('')
 
     def calculate_result(self):
